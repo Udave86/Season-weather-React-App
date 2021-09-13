@@ -45,6 +45,6 @@ constructor(props){
       );
     }
   }
-}
+} 
 
 ReactDOM.render(<App />, document.querySelector("#root"));
