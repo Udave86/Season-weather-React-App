@@ -9,8 +9,10 @@ if (module.hot) {
 }
 
 class App extends React.Component {
+  //default lat and errormessage value assign
   state = { lat: null, errorMessage: "" };
 
+  //REact lifecycle which call on
   componentDidMount() {
     //geolocation
     window.navigator.geolocation.getCurrentPosition(
@@ -26,16 +28,20 @@ class App extends React.Component {
       }
     );
   }
-
-  //React sats we have to define render!!
-  render() {
+  //helper class
+  renderContent() {
     if (this.state.errorMessage && !this.state.lat) {
       return <div> Error: {this.state.errorMessage}</div>;
     } else if (!this.state.errorMessage && this.state.lat) {
       return <SeasonDisplay lat={this.state.lat} />;
     } else {
-      return <Spinner />;
+      return <Spinner message="Please accept location request" />;
     }
+  }
+
+  //React sats we have to define render!!
+  render() {
+    return <div className="border red">{this.renderContent()}</div>;
   }
 }
 
